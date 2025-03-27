@@ -18,8 +18,9 @@ pkgs.stdenv.mkDerivation {
   ];
   installPhase = ''
     mkdir -p $out/share/ssdm/themes
-    sed -i 's|import QtMultimedia 5.7|import "${pkgs.libsForQt5.qt5.qtmultimedia}"|g' $src/Main.qml
     cp -aR $src $out/share/ssdm/themes/aerial
+
+    sed -i 's|QtMultimedia 5.7|"${pkgs.libsForQt5.qt5.qtmultimedia}"|g' $out/share/ssdm/themes/aerial/Main.qml
   '';
   meta = with lib; {
     description = "Aerial theme for SDDM";
