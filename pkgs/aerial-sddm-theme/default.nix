@@ -17,10 +17,9 @@ pkgs.stdenv.mkDerivation {
     libsForQt5.qt5.qtmultimedia
   ];
   installPhase = ''
-    runHook preInstall
-    mkdir -p $out/share/ssdm/themes/aerial
-    cp -a * $out/share/ssdm/themes/aerial/
-    runHook postInstall
+    mkdir -p $out/share/ssdm/themes
+    sed -i 's/import QtMultimedia 5.7/import QtMultimedia 5.15/g' $src/Main.qml
+    cp -aR $src $out/share/ssdm/themes/aerial
   '';
   meta = with lib; {
     description = "Aerial theme for SDDM";
