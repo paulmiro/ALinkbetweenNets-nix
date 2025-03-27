@@ -18,7 +18,7 @@ pkgs.stdenv.mkDerivation {
   ];
   installPhase = ''
     mkdir -p $out/share/ssdm/themes
-    sed -i 's/import QtMultimedia 5.7/import "${pkgs.libsForQt5.qt5.qtmultimedia}"/g' $src/Main.qml
+    sed -i 's|import QtMultimedia 5.7|import "${pkgs.libsForQt5.qt5.qtmultimedia}"|g' $src/Main.qml
     cp -aR $src $out/share/ssdm/themes/aerial
   '';
   meta = with lib; {
